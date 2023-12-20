@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+      .input-field .prefix.right{
+        right: 0;
+      }
+
+      .nomargin {
+        margin-left: 0 !important
+      }
+
+      .toggle-show-hide:hover {
+        cursor: pointer;
+      }
+
+      input[type="text"][disabled], input[type="password"][disabled]{
+        color: #080402 !important;
+      }
+
+      label {
+        font-size: 17px !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>
+          Employee Details for <?= full_name ?>
+      </h2>
+      <div class="row">
+        <form class="col s12">
+          <h4>
+            Employee Details
+            <button type="button" class="btn btn-danger" id="btn-decrypt" onclick="handleDecryptButtonPress()" disabled> Decrypt</button>
+          </h4>
+          <div class="row">
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="id_num" type="text" class="validate" value=<?= id_num ?>>
+              <label for="id_num">ID number</label>
+            </div>
+            <div class="input-field col l4 m6 s12 ">
+              <input disabled id="nickname" type="text" class="validate" value="<?= nickname ?>" >
+              <label for="nickname">Nickname</label>
+            </div>
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="PW" type="password" class="validate enc" value=<?= password ?> >  
+              <i class="material-icons prefix right toggle-show-hide" onclick="toggleShowPass('PW')">remove_red_eye</i>
+              <label for="last_name" class="nomargin">Password</label>
+            </div>
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="prev_pw" type="password" class="validate enc" value=<?= prev_pass ?> >  
+              <i class="material-icons prefix right toggle-show-hide" onclick="toggleShowPass('prev_pw')">remove_red_eye</i>
+              <label for="last_name" class="nomargin">Previous Password</label>
+            </div>
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="payslip_pw" type="password" class="validate enc" value=<?= payslip_pw ?>>
+              <i class="material-icons prefix right toggle-show-hide" onclick="toggleShowPass('payslip_pw')">remove_red_eye</i>
+              <label for="payslip_pw" class="nomargin">Payslip Password</label>
+            </div>
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="bank_number" type="text" class="validate" value=<?= bank_number ?> >  
+              <label for="bank_number" class="nomargin">Bank Acct. Number</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="bank_name" type="text" class="validate" value=<?= bank_name ?> > 
+              <label for="bank_name" class="nomargin">Bank Name</label>
+            </div>
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="date_hired" type="text" class="validate date" value= <?= date_hired ?>>
+              <label for="date_hired">Date Hired</label>
+            </div>
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="date_regularized" type="text" class="validate date" value=<?= date_regularized ?>>
+              <label for="date_regularized">Date Regularized</label>
+            </div>
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="vl" type="text" class="validate" value=<?= vl ?>>
+              <label for="vl"># of Vacation Leaves Remaining</label>
+            </div>
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="hmo_plan" type="text" class="validate" value="<?= hmo_plan ?>" >
+              <label for="hmo_plan">HMO Plan</label>
+            </div>
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="gender" type="text" class="validate" value=<?= gender ?> >  
+              <label for="gender" class="nomargin">Gender</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="tin_num" type="password" class="validate enc" value=<?= tin_num ?>>
+              <i class="material-icons prefix right toggle-show-hide" onclick="toggleShowPass('tin_num')">remove_red_eye</i>
+              <label for="tin_num" class="nomargin">TIN Number</label>
+            </div>
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="philhealth_num" type="password" class="validate enc" value=<?= philhealth_num ?>>
+              <i class="material-icons prefix right toggle-show-hide" onclick="toggleShowPass('philhealth_num')">remove_red_eye</i>
+              <label for="philhealth_num" class="nomargin">Philhealth Number</label>
+            </div>
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="sss_num" type="password" class="validate enc" value=<?= sss_num ?>>
+              <i class="material-icons prefix right toggle-show-hide" onclick="toggleShowPass('sss_num')">remove_red_eye</i>
+              <label for="sss_num" class="nomargin">SSS Number</label>
+            </div>
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="pagibig_num" type="password" class="validate enc" value=<?= pagibig_num ?>>
+              <i class="material-icons prefix right toggle-show-hide" onclick="toggleShowPass('pagibig_num')">remove_red_eye</i>
+              <label for="pagibig_num" class="nomargin">PAGIBIG Number</label>
+            </div>
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="birthday" type="text" class="validate date" value=<?= birthday ?> >  
+              <label for="birthday" class="nomargin">Birthday</label>
+            </div>
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="address" type="text" class="validate" value="<?= address ?>" >
+              <label for="address">Address</label>
+            </div>
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="moving_date" type="text" class="validate date" value=<?= moving_date ?>>
+              <label for="moving_date">Moving Date</label>
+            </div>
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="phone_number" type="text" class="validate" value=<?= phone_number ?> >  
+              <label for="phone_number" class="nomargin">Contact Number</label>
+            </div>
+            <!-- <div class="input-field col s3">
+              <input disabled id="sl" type="text" class="validate" value=<?= sl ?>>
+              <label for="sl"># of Sick Leaves Remaining</label>
+            </div> -->
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="personal_email_address" type="text" class="validate" value=<?= personal_email_address ?> >  
+              <label for="personal_email_address" class="nomargin">Personal Email</label>
+            </div>
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="email" type="text" class="validate" value="<?= email ?>" >
+              <label for="first_name">Email Address</label>
+            </div>
+          </div>
+          <h4>
+            Emergency Information
+          </h4>
+          <div class="row">
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="emergency_name" type="text" class="validate" value="<?= emergency_name ?>" >
+              <label for="emergency_name">Contact Person</label>
+            </div>
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="emergency_number" type="text" class="validate" value=<?= emergency_number ?>>
+              <label for="emergency_number">Contact Number</label>
+            </div>
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="emergency_address" type="text" class="validate" value=<?= emergency_address ?> >  
+              <label for="emergency_address" class="nomargin">Address</label>
+            </div>
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="emergency_email" type="text" class="validate" value=<?= emergency_email ?> >  
+              <label for="emergency_email" class="nomargin">Email</label>
+            </div>
+            <div class="input-field col l4 m6 s12">
+              <input disabled id="emergency_relation" type="text" class="validate" value="<?= emergency_relation ?>" >
+              <label for="emergency_relation">Relationship</label>
+            </div>
+          </div>
+
+          <h4>
+            Other links
+          </h4>
+          <div class="row">
+            
+            <div class="input-field col s12 l6 m6">
+              <input disabled id="document_drive_link" type="text" class="validate" value="<?= document_drive_link ?>" >
+              <label for="document_drive_link">Google Drive Link</label>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- ID and Business Card Details -->
+      <!-- <div class="row">
+          <div class="col s12 m6">
+            <div class="card">
+              <div class="card-image">
+                <img src="https://drive.google.com/uc?export=view&id=<?=id_image?>">
+                <span class="card-title">ID</span>
+              </div>
+              <div class="card-action">
+                <a href="<?=document_drive_link?>" target="_blank">Download</a>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m6 ">
+            <div class="card">
+              <div class="card-image">
+                <img src="https://drive.google.com/uc?export=view&id=<?=business_card_image?>">
+                <span class="card-title">Business Card</span>
+              </div>
+              <div class="card-action">
+                <a href="<?=document_drive_link?>" target="_blank">Download</a>
+              </div>
+            </div>
+          </div>
+      </div> -->
+    </div>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- CryptoJS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Day.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+
+    <script>
+      var SECRET = '';
+      
+      // setter function to set the secret_key
+      function setSecret(sec){
+        SECRET = sec;
+        
+        return true;
+      }
+
+      //initiation script to ensure that the secret key is fetched before the decrypt button is enabled.
+      async function initScript() {
+        var b = document.getElementById('btn-decrypt');
+
+        // getter function to set the secret_key from the .gs backend
+        var l = await new Promise(r => {
+          google.script.run.withSuccessHandler(r).getSecret();
+        });
+        var res = await setSecret(l);
+
+        b.disabled = false;
+      }
+
+      initScript();
+
+      // Get all date fields in the page
+      var dates = document.getElementsByClassName('date'); 
+
+      // Toggle function to show/hide the fields with sensitive information
+      function toggleShowPass(id) {
+        var i = id
+        var x = document.getElementById(i);
+        if (x.type === "password") {
+          x.type = "text";
+        } else {
+          x.type = "password";
+        }
+      }
+
+      // Decrypt function for encrypted hashes
+      function decrypt(hash) {      
+        decoded_bytes = CryptoJS.AES.decrypt(hash, SECRET);
+        decoded_string = decoded_bytes.toString(CryptoJS.enc.Utf8);
+
+        return decoded_string;
+      }
+
+      // Passes the value for encrypted fields to the decrypt function
+      function handleDecrypt(itm, idx) {
+        hash = itm.value.trim();
+        if(hash == ''){
+          return true;
+        }
+        try{
+          decrypted_string = decrypt(hash)
+          if(decrypted_string == ''){
+            throw new Error("Something wrong")
+          }
+        } catch(e){
+          alert('Wrong Public Key')
+          return;
+        }
+        itm.value = decrypted_string
+        return true;
+      }
+
+      // Date Parsing function
+      function handleDateParse(itm, idx) {
+        itm.value = (itm.value) != '' ? dayjs(itm.value).format('MM/DD/YYYY') : "N/A";
+      }
+
+      function handleDecryptButtonPress(){
+        pub_key = prompt("Please enter the public key"); // Prompt on initial page load to enter the public key issued on the start of the term
+        SECRET = SECRET+pub_key;
+        var encrypted_fields = document.getElementsByClassName('enc'); // Get all encrypted fields
+
+        if(pub_key) {
+          for (var p=0, max=encrypted_fields.length; p<max; p++){
+            if (handleDecrypt(encrypted_fields[p]) == undefined) {
+              break;
+            }
+          }     
+        }
+        
+      }
+
+      // Loop for decrypting input fields that are hashed. If the return value is undefined, an alert message will pop up signifying an incorrect Public Key input.
+      // Loop for fields dates the need to be formatted in human-readable format
+      for (var i=0, max=dates.length; i<max; i++){
+        handleDateParse(dates[i]);
+      }
+
+    </script>
+  </body>
+</html>
