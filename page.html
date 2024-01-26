@@ -214,6 +214,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Day.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/utc.js"></script>
+    <script>dayjs.extend(window.dayjs_plugin_utc)</script>
 
     <script>
       var SECRET = '';
@@ -283,7 +285,7 @@
 
       // Date Parsing function
       function handleDateParse(itm, idx) {
-        itm.value = (itm.value) != '' ? dayjs(itm.value).format('MM/DD/YYYY') : "N/A";
+        itm.value = (itm.value) != 'N/A' ? dayjs.utc(itm.value).utcOffset(8).format('MM/DD/YYYY') : "N/A";
       }
 
       function handleDecryptButtonPress(){
